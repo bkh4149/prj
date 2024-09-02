@@ -1,4 +1,4 @@
-name: Deploy to Sakura Server
+name: あおきタイトルサクラにデプロイ
 
 on:
   push:
@@ -9,14 +9,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: あおきCheckout code
         uses: actions/checkout@v2
 
-      - name: Install sshpass
+      - name: あおきInstall sshpass
         run: sudo apt-get update && sudo apt-get install -y sshpass
 
-      - name: Deploy to Sakura Server
+      - name: あおきDeploy to Sakura Server
         env:
           SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
         run: |
-          sshpass -p $SSH_PASSWORD scp  -o StrictHostKeyChecking=no -r . ubuntu@160.16.106.194:/home/ubuntu/prj
+          sshpass -p $SSH_PASSWORD scp -o StrictHostKeyChecking=no -r ./* ubuntu@160.16.106.194:/home/ubuntu/prj
+
+
